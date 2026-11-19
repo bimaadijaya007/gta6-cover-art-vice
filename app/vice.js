@@ -144,13 +144,24 @@ function drawPanels(W, H) {
   });
 }
 
+/* Shrink the title font until the text fits maxWidth (long titles). */
+function fitTitle(c, text, maxWidth, baseSize) {
+  let size = baseSize;
+  c.font = `900 ${size}px "Arial Black", Arial, sans-serif`;
+  while (size > 36 && c.measureText(text).width > maxWidth) {
+    size -= 4;
+    c.font = `900 ${size}px "Arial Black", Arial, sans-serif`;
+  }
+  return size;
+}
+
 function drawTitle(W, H) {
   const g = GRADES[state.grade];
   const bandY = H * 0.775;
   // Hot-pink bar above the title, like a poster masthead rule.
   ctx.fillStyle = g.bar;
   ctx.fillRect(W * 0.03, bandY, W * 0.94, Math.max(4, H * 0.006));
-  const size = Math.round(W * 0.115);
+  const size = fitTitle(ctx, state.title.toUpperCase(), W * 0.94, Math.round(W * 0.115));
   ctx.save();
   ctx.translate(W * 0.03, bandY + H * 0.028);
   ctx.transform(1, 0, -0.14, 1, 0, 0); // slight lean, condensed-poster feel
@@ -328,7 +339,7 @@ function drawOntoImpl(target, c) {
   const bandY = H * 0.775;
   c.fillStyle = g.bar;
   c.fillRect(W * 0.03, bandY, W * 0.94, Math.max(4, H * 0.006));
-  const size = Math.round(W * 0.115);
+  const size = fitTitle(c, state.title.toUpperCase(), W * 0.94, Math.round(W * 0.115));
   c.save();
   c.translate(W * 0.03, bandY + H * 0.028);
   c.transform(1, 0, -0.14, 1, 0, 0);
