@@ -189,16 +189,17 @@ function drawStickyNote(W, H) {
   ctx.fillStyle = '#2b2b6e';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  const lh = nh / 4.6;
-  ctx.font = `italic ${Math.round(lh * 0.95)}px "Comic Sans MS", "Segoe Print", cursive`;
+  const lh = nh / 5.8;
+  ctx.font = `italic ${Math.round(lh * 0.92)}px "Comic Sans MS", "Segoe Print", cursive`;
   const lines = [
     'dear judge \u2014',
-    'every other entry brought you a poster.',
-    'this one lets YOU make the poster.',
+    'every other entry brought',
+    'you a poster. this one',
+    'lets YOU make the poster.',
     'love, vice city \u2661',
   ];
   lines.forEach((line, i) => {
-    ctx.fillText(line, 0, -nh / 2 + lh * (i + 0.7));
+    ctx.fillText(line, 0, -nh / 2 + lh * (i + 0.75));
   });
   ctx.restore();
 }
@@ -359,10 +360,10 @@ function drawOntoImpl(target, c) {
   c.fillStyle = '#2b2b6e';
   c.textAlign = 'center';
   c.textBaseline = 'middle';
-  const lh = nh / 4.6;
-  c.font = `italic ${Math.round(lh * 0.95)}px "Comic Sans MS", "Segoe Print", cursive`;
-  ['dear judge \u2014', 'every other entry brought you a poster.', 'this one lets YOU make the poster.', 'love, vice city \u2661']
-    .forEach((line, i) => c.fillText(line, 0, -nh / 2 + lh * (i + 0.7)));
+  const lh = nh / 5.8;
+  c.font = `italic ${Math.round(lh * 0.92)}px "Comic Sans MS", "Segoe Print", cursive`;
+  ['dear judge \u2014', 'every other entry brought', 'you a poster. this one', 'lets YOU make the poster.', 'love, vice city \u2661']
+    .forEach((line, i) => c.fillText(line, 0, -nh / 2 + lh * (i + 0.75)));
   c.restore();
 }
 
